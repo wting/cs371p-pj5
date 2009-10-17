@@ -1,0 +1,28 @@
+#summary Project wiki for Project 5 of CS371p
+
+= Introduction =
+
+Design and implement a set of functions to manage a heap (free store).
+
+Use a first fit strategy.
+
+= Details =
+*
+Input :
+
+There is no input.
+
+*
+Output :
+
+There is no output
+
+= Design = 
+
+Using an array of characters (chars), create an heap segment that is controlled by the allocator.
+
+The character array is used to do this by creating sentinels, which inform the allocator of how much space has been allocated for a block. A sentinel is an integer, so it is 4 bytes. Each block is preceded and succeeded by a sentinel. This means that each allocated block is n*sizeof(T) + 8.
+
+A block is allocated on a first fit scheme, so a linear search is done through the entire array until a free sentinel is found with sufficient room (free sentinels are positive, allocated sentinels are negative). The free block's sentinels are modified to allocated sentinels, and additional sentinels are created if there is extra free space left in the block. If there is extra space, but not enough room for a T and two sentinels, the block is overallocated.
+
+Deallocation works in the opposite way of allocation, and neighboring free blocks are merged.
